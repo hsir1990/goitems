@@ -1,2 +1,3 @@
 /node_modules
-/.gulp
+my.sql
+/utils/db.go
