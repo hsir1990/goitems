@@ -9,6 +9,14 @@
 </head>
 <body>
 	<h1><a href="./pages/page.html">测试</a></h1>
+	<form action="/login" method="POST">
+		<label>用户名:</label>
+		<input type="text"  name="username" />
+		<label>年龄:</label>
+		<input type="text"  name="age" />
+		<input type="submit" name="submit"/>
+	</form>
+	{{.}}
 	<script type="text/javascript" src="./static/js/index.js"></script>
 </body>
 </html>

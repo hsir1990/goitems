@@ -9,6 +9,30 @@
 </head>
 <body>
 	<h1><a href="../main">Page</a></h1>
+	<input type="text" id="input"/>
+	<h2 id="send">send</h2>
+	<h2 id="text"></h2>
+	<h2>{{.Name}}</h2>
+
 	<script type="text/javascript" src="../static/js/page.js"></script>
+	<script type="text/javascript" src="../static/js/jquery3.5.1.js"></script>
+	<script type="text/javascript">
+		(function($){
+			$('#send').click(function(){
+				var urlStr = "/checkUserName"
+				$.ajax({
+					type: "post",
+					url:urlStr,
+					data: {username:$("#input").val()},
+					 // 告诉jQuery不要去设置Content-Type请求头
+					//contentType: false,  //通过什么格式去请求,是form还是application/json
+					// dataType: "json",   //通过dataType选项还可以指定其他不同数据处理方式。除了单纯的XML，还可以指定 html、json、jsonp、script或者text。//指定返回数据的类型
+					success: function(res){
+						$('#text').text(res)
+							}
+				});
+			});
+		})(jQuery)
+	</script>
 </body>
 </html>

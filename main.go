@@ -1,6 +1,7 @@
 package main
 
 import (
+	"goitems/controller"
 	"html/template"
 	"net/http" //获取链接请求
 )
@@ -20,8 +21,14 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./views/static"))))
 	// //直接去html页面
 	http.Handle("/pages/", http.StripPrefix("/pages/", http.FileServer(http.Dir("./views/pages"))))
-
+	//主页
 	http.HandleFunc("/main", IndexHandler)
+
+	//登录
+	http.HandleFunc("/login", controller.Login)
+
+	//通过ajax请求验证用户名是否可以用
+	http.HandleFunc("/checkUserName", controller.CheckUserName)
 
 	http.ListenAndServe(":8080", nil)
 }

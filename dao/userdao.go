@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"fmt"
 	"goitems/model"
 	"goitems/utils"
 )
@@ -26,14 +25,14 @@ func CheckUserName(name string) (*model.User, error) {
 	sqlStr := "select id, name, age, gender from test where name = ? "
 	//执行
 	row := utils.Db.QueryRow(sqlStr, name)
-	fmt.Println("row---", row)
 	user := &model.User{}
-	errNotFound := row.Scan(&user.Id, &user.Name, &user.Age, &user.Gender)
-	fmt.Println("user---", user)
-	if errNotFound != nil {
-		fmt.Println("errNotFound---", errNotFound)
-		return nil, errNotFound
-	}
+	row.Scan(&user.Id, &user.Name, &user.Age, &user.Gender)
+	//报错以后会返回其他的东西,所以暂时先不动
+	// errNotFound := row.Scan(&user.Id, &user.Name, &user.Age, &user.Gender)
+	// if errNotFound != nil {
+	// 	fmt.Println("errNotFound---", errNotFound)
+	// 	return nil, errNotFound
+	// }
 	return user, nil
 }
 
