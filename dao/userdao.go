@@ -40,7 +40,7 @@ func CheckUserName(name string) (*model.User, error) {
 
 func SaveUser(name string, age int, gender string) error {
 	//写sql语句
-	sqlStr := "insert into test(name,age,gender) value(?,?,?)"
+	sqlStr := "insert into test(name,age,gender) values(?,?,?)"
 	//执行
 	_, err := utils.Db.Exec(sqlStr, name, age, gender)
 	if err != nil {
